@@ -1,5 +1,6 @@
 import numpy as np
 import random as rand
+import time
 
 class ArtificialBeeColony():
 
@@ -84,8 +85,8 @@ class ArtificialBeeColony():
         print("==================================")
     
     def init(self):
-        if(self.ans == 0): self.bestFunc = 100
-        elif(self.ans == 1): self.bestFunc = 0
+        if(self.ans == 0): self.bestFunc = float("inf")
+        elif(self.ans == 1): self.bestFunc = -float("inf")
             
         for i in range(self.n):
             for j in range(self.D):
@@ -94,6 +95,7 @@ class ArtificialBeeColony():
             self.fitnessArray[i] = self.fitness(self.funcArray[i])
             
     def doRun(self):
+        start = time.time()
         self.init()
             
         for gen in range(self.generation):
@@ -122,7 +124,8 @@ class ArtificialBeeColony():
                     self.funcArray[i] = self.func(self.foodSourceArray[i,:],self.D)
                     self.fitnessArray[i] = self.fitness(self.funcArray[i])
                     self.trialArray[i] = 0
-
+        end = time.time()
         print("============================================")
+        print("執行時間：%f 秒" % (end - start))
         print("Best Food Source:", self.bestFoodSourceArray)
         print("Best F(x) =", self.bestFunc)
