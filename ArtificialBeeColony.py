@@ -2,7 +2,7 @@ import numpy as np
 import random as rand
 import time
 
-class ArtificialBeeColony():
+class ArtificialBeeColony:
 
     def __init__(self, D, Lb, Ub, n, generation, ans, func):
         self.D = D
